@@ -8,7 +8,7 @@ namespace DatingApp.Controllers;
 [Authorize]
 public class UsersController(DataContext context) : BaseApiController
 {
-    
+
     [HttpGet]
     public async Task<IActionResult> ListAllUsers(CancellationToken token)
     {

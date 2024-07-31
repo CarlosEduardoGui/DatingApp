@@ -1,11 +1,11 @@
-using System.Security.Cryptography;
-using System.Text;
 using DatingApp.Data;
 using DatingApp.Dtos;
 using DatingApp.Entities;
 using DatingApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DatingApp.Controllers;
 

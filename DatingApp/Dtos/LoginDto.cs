@@ -2,10 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DatingApp.Dtos;
 
-public class LoginDto {
+public class LoginDto
+{
     [Required]
-    public string UserName { get; set;}
-    
+    public string UserName { get; set; }
+
     [Required]
-    public string Password { get; set;}
+    public string Password { get; set; }
 }
