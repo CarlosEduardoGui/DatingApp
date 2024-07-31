@@ -3,12 +3,16 @@ using System.Text;
 using DatingApp.Data;
 using DatingApp.Dtos;
 using DatingApp.Entities;
+using DatingApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Controllers;
 
-public class AccountController(DataContext context) : BaseApiController
+public class AccountController(
+    DataContext context,
+    ITokenService tokenService
+) : BaseApiController
 {
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto dto)
@@ -27,7 +31,7 @@ public class AccountController(DataContext context) : BaseApiController
         context.Users.Add(user);
         await context.SaveChangesAsync();
 
-        return Ok(user);
+        return Ok(UserDto.FromAppUser(user, tokenService.CreateToken(user)));
     }
 
     [HttpPost]
@@ -44,10 +48,10 @@ public class AccountController(DataContext context) : BaseApiController
 
         for (int i = 0; i < computedHash.Length; i++)
         {
-            if(computedHash[i] != user.PasswordHash[i]) return Unauthorized("Password is not valid.");
+            if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Password is not valid.");
         }
 
-        return Ok(user);
+        return Ok(UserDto.FromAppUser(user, tokenService.CreateToken(user)));
     }
 
     private async Task<bool> UserExists(string userName)

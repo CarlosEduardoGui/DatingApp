@@ -1,11 +1,14 @@
 ﻿using DatingApp.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Controllers;
 
+[Authorize]
 public class UsersController(DataContext context) : BaseApiController
 {
+    
     [HttpGet]
     public async Task<IActionResult> ListAllUsers(CancellationToken token)
     {

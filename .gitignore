@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DatingApp/datingapp.db-shm
+/DatingApp/datingapp.db-wal
